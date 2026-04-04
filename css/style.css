@@ -1032,6 +1032,269 @@ footer {
   letter-spacing: .06em;
 }
 
+/* ─── COMMAND CENTER ─────────────────────────── */
+#command-center {
+  padding: 0;
+  background: var(--black);
+  border-top: 1px solid var(--border);
+}
+
+/* Image wrapper — all overlays positioned relative to this */
+.cc-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/7;
+  overflow: hidden;
+  min-height: 420px;
+}
+
+.cc-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  /* Desaturate slightly so amber overlays read clearly */
+  filter: saturate(.55) brightness(.75);
+}
+
+/* Amber tint to unify with brand */
+.cc-tint {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8,10,8,.55) 0%, rgba(8,10,8,.15) 40%, rgba(8,10,8,.6) 100%),
+    linear-gradient(90deg, rgba(8,10,8,.3) 0%, transparent 30%, transparent 70%, rgba(8,10,8,.3) 100%);
+  pointer-events: none;
+}
+
+/* ── Blot patches: cover Elitez branding ── */
+.cc-blot {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Top center — large "ELITEZ GROUP" header on screen wall */
+.cc-blot-topcenter {
+  top: 0; left: 38%; width: 24%; height: 9%;
+  background: var(--dark);
+  /* Blend into the screen wall rather than hard-cut */
+  mask-image: linear-gradient(180deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+}
+
+/* Top left small logo on screens */
+.cc-blot-topleft {
+  top: 0; left: 0; width: 8%; height: 8%;
+  background: var(--dark);
+  mask-image: linear-gradient(135deg, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(135deg, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+}
+
+/* Desk panel logos mid-frame */
+.cc-blot-desk1 {
+  top: 58%; left: 6%; width: 18%; height: 10%;
+  background: linear-gradient(180deg, transparent, rgba(8,10,8,.92) 60%);
+}
+
+.cc-blot-desk2 {
+  top: 62%; left: 36%; width: 22%; height: 12%;
+  background: linear-gradient(180deg, transparent, rgba(8,10,8,.95) 55%);
+}
+
+.cc-blot-desk3 {
+  top: 60%; left: 68%; width: 18%; height: 10%;
+  background: linear-gradient(180deg, transparent, rgba(8,10,8,.9) 60%);
+}
+
+/* Bottom large badge */
+.cc-blot-bottom {
+  bottom: 0; left: 0; right: 0; height: 18%;
+  background: linear-gradient(0deg, rgba(8,10,8,.98) 0%, rgba(8,10,8,.7) 60%, transparent 100%);
+}
+
+/* ── Screen wall label rebranding ── */
+.cc-screen-labels {
+  position: absolute;
+  top: 2.5%;
+  left: 0; right: 0;
+  display: flex;
+  pointer-events: none;
+}
+
+.cc-screen-label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  transform: translateX(-50%);
+}
+
+.cc-label-code {
+  font-family: var(--font-mono);
+  font-size: clamp(.45rem, .8vw, .65rem);
+  color: var(--amber);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.cc-label-title {
+  font-family: var(--font-head);
+  font-size: clamp(.55rem, 1.1vw, .85rem);
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* ── VSD brand stamp (replaces centre Elitez logo) ── */
+.cc-brand-stamp {
+  position: absolute;
+  top: 1.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: clamp(.7rem, 1.4vw, 1rem);
+  color: var(--amber);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ── Corner classification markers ── */
+.cc-corner {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: clamp(.5rem, .75vw, .65rem);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.cc-corner-tl { top: 1rem; left: 1.5rem; color: var(--gray); }
+.cc-corner-tr { top: 1rem; right: 1.5rem; color: var(--gray); }
+
+.cc-corner-bl {
+  bottom: 1rem; left: 1.5rem;
+  display: flex; align-items: center; gap: .4rem;
+  color: #3a8a3a;
+}
+
+.cc-corner-br { bottom: 1rem; right: 1.5rem; color: var(--amber); }
+
+.cc-live-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: #3a8a3a;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #3a8a3a;
+  animation: pulse-green 2s infinite;
+}
+
+/* ── Content below the image ── */
+.cc-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-right: none;
+  border-bottom: none;
+  margin-top: 0;
+}
+
+.cc-text {
+  padding: 3.5rem 3rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.cc-text .section-tag { margin-bottom: 1.25rem; }
+.cc-text h2 { margin-bottom: 1.25rem; }
+.cc-text p  { margin-bottom: 1rem; }
+
+.cc-specs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-right: none;
+  border-bottom: none;
+}
+
+.cc-spec {
+  padding: 1rem 1.25rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.cc-spec-val {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.cc-spec-label {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  color: var(--gray);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .2rem;
+}
+
+/* ── Feature list ── */
+.cc-features {
+  padding: 3.5rem 3rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-right: 1px solid var(--border);
+}
+
+.cc-feature {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cc-feature:last-child { border-bottom: none; }
+
+.cc-feature-num {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--border-hi);
+  flex-shrink: 0;
+  line-height: 1;
+  min-width: 2rem;
+  transition: color .2s;
+}
+
+.cc-feature:hover .cc-feature-num { color: var(--amber); }
+
+.cc-feature h4 {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: .35rem;
+}
+
+.cc-feature p { font-size: .88rem; }
+
 /* ─── Responsive ──────────────────────────────── */
 @media (max-width: 1024px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1049,6 +1312,9 @@ footer {
   .footer-links { justify-content: center; }
   .horizons-header { flex-direction: column; align-items: flex-start; }
   .horizons-declassified { text-align: left; }
+  .cc-content { grid-template-columns: 1fr; }
+  .cc-screen-labels { display: none; }
+  .cc-image-wrap { aspect-ratio: 16/9; }
 }
 
 @media (max-width: 700px) {
