@@ -294,8 +294,7 @@ nav::before {
   height: 100%;
   object-fit: cover;
   object-position: center 35%;
-  /* desaturate + darken to stay tactical */
-  filter: saturate(.45) brightness(.5);
+  filter: saturate(.35) brightness(.35);
 }
 
 /* Multi-layer tint over the photo */
@@ -304,14 +303,14 @@ nav::before {
   inset: 0;
   background:
     linear-gradient(180deg,
-      rgba(8,10,8,.72) 0%,
-      rgba(8,10,8,.3) 45%,
-      rgba(8,10,8,.8) 100%
+      rgba(8,10,8,.82) 0%,
+      rgba(8,10,8,.55) 40%,
+      rgba(8,10,8,.88) 100%
     ),
     linear-gradient(90deg,
-      rgba(8,10,8,.65) 0%,
-      transparent 50%,
-      rgba(8,10,8,.4) 100%
+      rgba(8,10,8,.75) 0%,
+      rgba(8,10,8,.3) 45%,
+      rgba(8,10,8,.5) 100%
     );
 }
 
@@ -384,6 +383,7 @@ nav::before {
   display: block;
   color: var(--white);
   font-size: clamp(3.5rem, 8vw, 7.5rem);
+  text-shadow: 0 2px 32px rgba(0,0,0,.95), 0 0 80px rgba(0,0,0,.8);
 }
 
 .hero-title .line-2 {
@@ -391,6 +391,7 @@ nav::before {
   color: var(--amber);
   font-size: clamp(2.5rem, 6vw, 5.5rem);
   -webkit-text-stroke: 1px var(--amber);
+  text-shadow: 0 0 40px rgba(200,134,10,.6), 0 2px 24px rgba(0,0,0,.95);
 }
 
 .hero-title .line-3 {
@@ -398,6 +399,8 @@ nav::before {
   color: transparent;
   -webkit-text-stroke: 1px var(--border-hi);
   font-size: clamp(3rem, 7vw, 6.5rem);
+  text-shadow: none;
+  filter: drop-shadow(0 2px 12px rgba(0,0,0,.9));
 }
 
 .hero-tagline {
@@ -408,6 +411,7 @@ nav::before {
   line-height: 1.6;
   border-left: 3px solid var(--amber);
   padding-left: 1.25rem;
+  text-shadow: 0 1px 12px rgba(0,0,0,.95);
 }
 
 .hero-actions {
