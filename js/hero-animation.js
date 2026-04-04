@@ -250,7 +250,7 @@
     threats.push({
       id: threatCount,
       x, y, tx, ty,
-      speed: 1.8 + Math.random() * 1.6,
+      speed: 5.4 + Math.random() * 4.8,
       size: 11 + Math.random() * 7,
       rot: Math.random() * Math.PI * 2,
       rotSpeed: (Math.random() - 0.5) * 0.04,
@@ -466,12 +466,17 @@
       if (sat.fireCD > 0) { sat.fireCD--; return; }
       const { x: sx, y: sy } = getSatPos(sat);
 
-      // find nearest alive threat within range
+      // fire only when threat is 0.5–0.7 Earth diameters from Earth centre
+      const minFire = ER * 1.0;   // 0.5 × diameter
+      const maxFire = ER * 1.4;   // 0.7 × diameter
       let nearest = null, nearD = Infinity;
       threats.forEach(th => {
         if (!th.alive) return;
-        const d = Math.hypot(th.x - sx, th.y - sy);
-        if (d < ER * 2.2 && d < nearD) { nearest = th; nearD = d; }
+        const dEarth = Math.hypot(th.x - EX, th.y - EY);
+        if (dEarth >= minFire && dEarth <= maxFire) {
+          const dSat = Math.hypot(th.x - sx, th.y - sy);
+          if (dSat < nearD) { nearest = th; nearD = dSat; }
+        }
       });
 
       if (nearest) {
@@ -564,9 +569,9 @@
 
     // spawn threats
     if (t - lastSpawn > spawnInterval) {
-      spawnThreat();
+      for (let i = 0; i < 5; i++) spawnThreat();
       lastSpawn = t;
-      spawnInterval = 2800 + Math.random() * 2000;
+      spawnInterval = 560 + Math.random() * 400;
     }
 
     drawNebula();
@@ -590,9 +595,8 @@
   function init() {
     resize();
     initSatellites();
-    // seed 2 initial threats
-    spawnThreat();
-    setTimeout(spawnThreat, 1200);
+    // seed initial wave
+    for (let i = 0; i < 10; i++) setTimeout(spawnThreat, i * 120);
     window.addEventListener('resize', () => {
       cancelAnimationFrame(animId);
       resize();
