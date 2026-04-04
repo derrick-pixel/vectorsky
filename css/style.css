@@ -391,10 +391,12 @@ nav::before {
 
 .hero-title .line-3 {
   display: block;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--border-hi);
+  color: #7a1428;
   font-size: clamp(3rem, 7vw, 6.5rem);
-  filter: drop-shadow(0 0 18px rgba(0,0,0,1)) drop-shadow(0 2px 8px rgba(0,0,0,1));
+  text-shadow:
+    0 0 40px rgba(0,0,0,1),
+    0 2px 18px rgba(0,0,0,1),
+    0 0 28px rgba(80,0,15,.6);
 }
 
 .hero-tagline {
