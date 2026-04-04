@@ -17,9 +17,9 @@
   function resize() {
     W = canvas.width  = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
-    EX = W * 0.62;
-    EY = H * 0.54;
-    ER = Math.min(W, H) * 0.26;
+    EX = W * 0.50;
+    EY = H * 0.52;
+    ER = Math.min(W, H) * 0.30;
     buildStars();
   }
 
