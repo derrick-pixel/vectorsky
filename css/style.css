@@ -281,50 +281,36 @@ nav::before {
   overflow: hidden;
 }
 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-bg-img {
+/* Canvas fills the hero section as a live background */
+#hero-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 35%;
-  filter: saturate(.35) brightness(.35);
+  z-index: 0;
+  display: block;
 }
 
-/* Multi-layer tint over the photo */
-.hero-bg-tint {
+/* Left-side gradient so text on the left always reads clearly */
+#hero::after {
+  content: '';
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg,
-      rgba(8,10,8,.82) 0%,
-      rgba(8,10,8,.55) 40%,
-      rgba(8,10,8,.88) 100%
-    ),
     linear-gradient(90deg,
-      rgba(8,10,8,.75) 0%,
-      rgba(8,10,8,.3) 45%,
-      rgba(8,10,8,.5) 100%
+      rgba(8,10,8,.78) 0%,
+      rgba(8,10,8,.52) 38%,
+      rgba(8,10,8,.08) 65%,
+      transparent 100%
+    ),
+    linear-gradient(180deg,
+      rgba(8,10,8,.55) 0%,
+      transparent 35%,
+      transparent 65%,
+      rgba(8,10,8,.75) 100%
     );
-}
-
-/* Amber scan-line sweep — purely decorative */
-.hero-bg-sweep {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    180deg,
-    transparent 0px,
-    transparent 3px,
-    rgba(200,134,10,.018) 3px,
-    rgba(200,134,10,.018) 4px
-  );
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* Horizon horizon line + flare */
@@ -350,6 +336,7 @@ nav::before {
   position: relative;
   z-index: 2;
   padding: 0 0 80px;
+  max-width: 660px;
 }
 
 .hero-meta {
@@ -459,7 +446,7 @@ nav::before {
 /* Hero grid stats */
 .hero-stats {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-top: 2px solid var(--olive);
