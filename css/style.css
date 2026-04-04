@@ -284,11 +284,48 @@ nav::before {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 70% 55% at 55% 35%, rgba(90,112,68,.18) 0%, transparent 65%),
-    radial-gradient(ellipse 30% 30% at 5% 90%, rgba(200,134,10,.08) 0%, transparent 50%),
-    var(--black);
   z-index: 0;
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  /* desaturate + darken to stay tactical */
+  filter: saturate(.45) brightness(.5);
+}
+
+/* Multi-layer tint over the photo */
+.hero-bg-tint {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(8,10,8,.72) 0%,
+      rgba(8,10,8,.3) 45%,
+      rgba(8,10,8,.8) 100%
+    ),
+    linear-gradient(90deg,
+      rgba(8,10,8,.65) 0%,
+      transparent 50%,
+      rgba(8,10,8,.4) 100%
+    );
+}
+
+/* Amber scan-line sweep — purely decorative */
+.hero-bg-sweep {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(200,134,10,.018) 3px,
+    rgba(200,134,10,.018) 4px
+  );
 }
 
 /* Horizon horizon line + flare */
@@ -810,15 +847,63 @@ nav::before {
 }
 
 .horizon-card {
-  background: var(--panel);
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 3rem 2.5rem;
+  padding: 0;
   position: relative;
   overflow: hidden;
-  transition: background .2s;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
+/* Full-bleed photo behind each card */
+.horizon-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.35) brightness(.45);
+  transition: filter .5s, transform .6s;
+}
+
+.horizon-card:hover .horizon-card-img {
+  filter: saturate(.5) brightness(.55);
+  transform: scale(1.04);
+}
+
+/* gradient scrim over the image so text is readable */
+.horizon-card-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8,10,8,.3) 0%,
+    rgba(8,10,8,.55) 45%,
+    rgba(8,10,8,.92) 100%
+  );
+  pointer-events: none;
+}
+
+/* amber top-border reveal on hover */
+.horizon-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s;
+  z-index: 2;
+}
+
+.horizon-card:hover::after { transform: scaleX(1); }
+
+/* code badge — now top-right, above image */
 .horizon-card::before {
   content: attr(data-code);
   position: absolute;
@@ -826,26 +911,37 @@ nav::before {
   right: 1.5rem;
   font-family: var(--font-mono);
   font-size: .62rem;
-  color: var(--border-hi);
+  color: rgba(200,134,10,.7);
   letter-spacing: .1em;
+  z-index: 2;
 }
 
-.horizon-card:hover { background: var(--dark-mid); }
+/* text content lives above the scrim */
+.horizon-card-body {
+  position: relative;
+  z-index: 2;
+  padding: 2.5rem;
+}
 
 .horizon-icon {
-  width: 52px;
-  height: 52px;
-  margin-bottom: 1.75rem;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.5rem;
   color: var(--amber);
+  filter: drop-shadow(0 0 8px rgba(200,134,10,.5));
 }
 
-.horizon-card h3 {
+.horizon-card-body h3 {
   color: var(--white);
   margin-bottom: .75rem;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,.8);
 }
 
-.horizon-card p { font-size: .9rem; }
+.horizon-card-body p {
+  font-size: .9rem;
+  text-shadow: 0 1px 6px rgba(0,0,0,.9);
+}
 
 .horizon-phase {
   display: inline-flex;
@@ -853,12 +949,13 @@ nav::before {
   gap: .4rem;
   margin-top: 1.5rem;
   padding: .3rem .75rem;
-  border: 1px solid var(--border-hi);
+  border: 1px solid var(--amber);
+  background: rgba(8,10,8,.6);
   font-family: var(--font-mono);
   font-size: .65rem;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--amber);
 }
 
 /* ─── CONTACT ─────────────────────────────────── */
