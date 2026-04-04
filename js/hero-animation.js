@@ -250,7 +250,7 @@
     threats.push({
       id: threatCount,
       x, y, tx, ty,
-      speed: 0.9 + Math.random() * 0.8,
+      speed: 1.8 + Math.random() * 1.6,
       size: 11 + Math.random() * 7,
       rot: Math.random() * Math.PI * 2,
       rotSpeed: (Math.random() - 0.5) * 0.04,
