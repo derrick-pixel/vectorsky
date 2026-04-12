@@ -9,7 +9,17 @@
       "Bash(git add:*)",
       "Bash(git commit -m ':*)",
       "Bash(git branch:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(curl -sL \"https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1920&q=85\" -o /Users/derrickteo/vectorsky/assets/hero-earth.jpg)",
+      "Bash(curl -sL \"https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=85\" -o /Users/derrickteo/vectorsky/assets/horizon-planetary.jpg)",
+      "Bash(curl -sL \"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1400&q=85\" -o /Users/derrickteo/vectorsky/assets/horizon-robotics.jpg)",
+      "Bash(curl -sL \"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85\" -o /Users/derrickteo/vectorsky/assets/horizon-mmi.jpg)",
+      "Bash(wait)",
+      "Bash(git commit -m 'Double alien threat speed \\(1.8–3.4 from 0.9–1.7\\):*)",
+      "Bash(git commit -m 'Set '\\\\''Dominate'\\\\'' to maroon — firm, strong foundation:*)",
+      "Bash(git revert:*)"
     ]
   }
 }
